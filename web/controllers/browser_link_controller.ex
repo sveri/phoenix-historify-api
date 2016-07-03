@@ -6,7 +6,9 @@ defmodule Historifyapi.BrowserLinkController do
 #  plug :scrub_params, "browser_link" when action in [:create, :update]
 
   def index(conn, _params) do
-    browser_links = Repo.all(BrowserLink)
+#    browser_links = Repo.all(BrowserLink, limit: 5)
+    browser_links = Repo.all(from b in BrowserLink,
+        limit: 50)
     render conn, browser_links: browser_links
   end
 
